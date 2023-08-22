@@ -1,3 +1,4 @@
+// .ready waits to run until the page has loaded
 $(document).ready(function () {
   // listen for save button clicks
   $('.saveBtn').on('click', function () {
