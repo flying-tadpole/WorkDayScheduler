@@ -2,13 +2,12 @@
 window.addEventListener("load", function(event){
     console.log('window is loaded')
 
-    // var currentTime = $(dayjs().hour())
-    // console.log('current time', currentTime)
-
+    //checks for current hour
     var d = new Date()
     var currentHour = d.getHours()
     console.log('currentHour', currentHour)
 
+    //gathers elements on the page into array
     var hoursToCheck = [
         h7 = this.document.getElementById('7'),
         h8 = this.document.getElementById('8'),
@@ -23,8 +22,10 @@ window.addEventListener("load", function(event){
         h17 = this.document.getElementById('17')
     ]
 
-    var saveButton = this.document.querySelectorAll('.saveBtn')
+    var saveButton = this.document.getElementsByClassName('.saveBtn')
+    console.log('save button', saveButton)
 
+    //checks each hour block against current hour and assigns classes for formatting
     function checkTime() {
         console.log('hourstocheck', hoursToCheck)
         console.log('checking time')
@@ -49,6 +50,11 @@ window.addEventListener("load", function(event){
         console.log('save button clicked')
     }
 
+    for (var i = 0; i < saveButton; i ++) {
+        saveButton[i].addEventListener('click', saveItem)
+    }
+
+    //calls function to check time and assign formatting
     checkTime()
 })
 
