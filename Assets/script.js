@@ -2,7 +2,13 @@
 window.addEventListener("load", function(event){
     console.log('window is loaded')
 
-    var currentTime = $(dayjs().hour())
+    // var currentTime = $(dayjs().hour())
+    // console.log('current time', currentTime)
+
+    var d = new Date()
+    var currentHour = d.getHours()
+    console.log('currentHour', currentHour)
+
     var hoursToCheck = [
         h7 = this.document.getElementById('7'),
         h8 = this.document.getElementById('8'),
@@ -16,24 +22,29 @@ window.addEventListener("load", function(event){
         h16 = this.document.getElementById('16'),
         h17 = this.document.getElementById('17')
     ]
-    console.log('hours', hoursToCheck)
 
     var saveButton = this.document.querySelectorAll('.saveBtn')
 
-    function checkTime(hoursToCheck) {
+    function checkTime() {
+        console.log('hourstocheck', hoursToCheck)
         console.log('checking time')
-        console.log('id', this.id)
-        // for (var i = 0; i < this.length; i++){
-            if (hoursToCheck.div.id < currentTime) {
-                $(hoursToCheck.div).addClass('past');
+        for (var i = 0; i < hoursToCheck.length; i ++) {
+            console.log('id', hoursToCheck[i].id)
+            if (hoursToCheck[i].id < currentHour) {
+                console.log('setting class to past')
+                hoursToCheck[i].setAttribute("class", "row time-block past");
+            } else if (hoursToCheck[i].id === currentHour) {
+                console.log('setting class to present')
+                hoursToCheck[i].setAttribute("class", "row time-block present")
+            } else {
+                console.log('setting class to future')
+                hoursToCheck[i].setAttribute("class", "row time-block future")
             }
-        }
-    // }
-
+    }}
+    
     //show current day in header
     $('#currentDay').text(dayjs().format('dddd  MMMM D, YYYY  h:mm a'));
 
-    
     function saveItem() {
         console.log('save button clicked')
     }
