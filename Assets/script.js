@@ -22,8 +22,10 @@ window.addEventListener("load", function(event){
         h17 = this.document.getElementById('17')
     ]
 
-    var saveButton = this.document.getElementsByClassName('.saveBtn')
+    var saveButton = this.document.querySelectorAll('.saveBtn')
     console.log('save button', saveButton)
+    var saveBtnArray = Array.from(saveButton)
+    console.log('save button array', saveBtnArray)
 
     //checks each hour block against current hour and assigns classes for formatting
     function checkTime() {
@@ -50,8 +52,8 @@ window.addEventListener("load", function(event){
         console.log('save button clicked')
     }
 
-    for (var i = 0; i < saveButton; i ++) {
-        saveButton[i].addEventListener('click', saveItem)
+    for (var i = 0; i < saveBtnArray.length; ++i) {
+        saveBtnArray[i].addEventListener('click', saveItem)
     }
 
     //calls function to check time and assign formatting
