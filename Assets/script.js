@@ -22,25 +22,27 @@ window.addEventListener("load", function(event){
         h17 = this.document.getElementById('17')
     ]
 
+    //targets save button elements and returns array
     var saveButton = this.document.querySelectorAll('.saveBtn')
-    console.log('save button', saveButton)
     var saveBtnArray = Array.from(saveButton)
-    console.log('save button array', saveBtnArray)
+
+    //variable for saved notification
+    var savedNotification = this.document.getElementById('notify')
 
     //checks each hour block against current hour and assigns classes for formatting
     function checkTime() {
         console.log('hourstocheck', hoursToCheck)
         console.log('checking time')
         for (var i = 0; i < hoursToCheck.length; i ++) {
-            console.log('id', hoursToCheck[i].id)
+            // console.log('id', hoursToCheck[i].id)
             if (hoursToCheck[i].id < currentHour) {
-                console.log('setting class to past')
+                // console.log('setting class to past')
                 hoursToCheck[i].setAttribute("class", "row time-block past");
             } else if (hoursToCheck[i].id === currentHour) {
-                console.log('setting class to present')
+                // console.log('setting class to present')
                 hoursToCheck[i].setAttribute("class", "row time-block present")
             } else {
-                console.log('setting class to future')
+                // console.log('setting class to future')
                 hoursToCheck[i].setAttribute("class", "row time-block future")
             }
     }}
@@ -48,13 +50,42 @@ window.addEventListener("load", function(event){
     //show current day in header
     $('#currentDay').text(dayjs().format('dddd  MMMM D, YYYY  h:mm a'));
 
+    //saves text from user to page when save button is clicked
     function saveItem() {
         console.log('save button clicked')
+        var textInput = this.previousElementSibling.value
+        var timeElement = this.parentNode.id
+        console.log('save btn children', textInput)
+        console.log('save btn parent id', timeElement)
+        localStorage.setItem(timeElement, textInput)
+        savedNotification.textContent = "Saved!"
+        hideNotif() 
     }
 
+    function hideNotif() {
+        setTimeout(function() {
+            if (1 === 1) {
+            savedNotification.textContent = ""
+        }
+    }, 2000)}
+
+    //assigns event listeners to each save button element
     for (var i = 0; i < saveBtnArray.length; ++i) {
         saveBtnArray[i].addEventListener('click', saveItem)
     }
+
+    // checks for saved text from local storage
+    $('#7 .description').val(localStorage.getItem('7'));
+    $('#8 .description').val(localStorage.getItem('8'));
+    $('#9 .description').val(localStorage.getItem('9'));
+    $('#10 .description').val(localStorage.getItem('10'));
+    $('#11 .description').val(localStorage.getItem('11'));
+    $('12 .description').val(localStorage.getItem('12'));
+    $('13 .description').val(localStorage.getItem('13'));
+    $('#14 .description').val(localStorage.getItem('14'));
+    $('#15 .description').val(localStorage.getItem('15'));
+    $('#16 .description').val(localStorage.getItem('16'));
+    $('#17 .description').val(localStorage.getItem('17'));
 
     //calls function to check time and assign formatting
     checkTime()
