@@ -38,7 +38,7 @@ window.addEventListener("load", function(event){
             if (hoursToCheck[i].id < currentHour) {
                 // console.log('setting class to past')
                 hoursToCheck[i].setAttribute("class", "row time-block past");
-            } else if (hoursToCheck[i].id === currentHour) {
+            } else if (hoursToCheck[i].id == currentHour) {
                 // console.log('setting class to present')
                 hoursToCheck[i].setAttribute("class", "row time-block present")
             } else {
@@ -62,6 +62,7 @@ window.addEventListener("load", function(event){
         hideNotif() 
     }
 
+    // timeout function to hide saved notification after certain period
     function hideNotif() {
         setTimeout(function() {
             if (1 === 1) {
